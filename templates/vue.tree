@@ -1,0 +1,24 @@
+"""
+Vue 3 + Vite Single Page Application
+Modern reactive setup utilizing Pinia for state management and Vue Router.
+"""
+package.json
+vite.config.ts
+index.html
+src:
+    main.ts
+    App.vue
+    assets:
+        logo.png
+        base.css
+    components:
+        Navbar.vue
+        Sidebar.vue
+        'TreeView.vue'
+    router:
+        index.ts
+    stores:
+        treeStore.ts
+    views:
+        HomeView.vue
+        EditorView.vue

@@ -1,0 +1,27 @@
+"""
+Node.js REST API Boilerplate
+Production-ready Express backend service with docker, security middlewares, and unit testing.
+"""
+package.json
+Dockerfile
+.env.example
+.gitignore
+README.md
+src:
+    app.js
+    server.js
+    config:
+        db.js
+        logger.js
+    routes:
+        index.js
+        users.js
+        'auth:routes.js'
+    controllers:
+        userController.js
+    middleware:
+        auth.js
+        errorHandler.js
+tests:
+    app.test.js
+    user.test.js

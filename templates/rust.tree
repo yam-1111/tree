@@ -1,0 +1,19 @@
+"""
+Rust Cargo Binary Template
+Standard Rust crate structure including benchmarks, library modules, and integration tests.
+"""
+Cargo.toml
+Cargo.lock
+src:
+    main.rs
+    lib.rs
+    parser.rs
+    visualizer:
+        mod.rs
+        brutalist.rs
+tests:
+    parser_tests.rs
+benches:
+    'parse_benchmark.rs'
+examples:
+    parse_file.rs

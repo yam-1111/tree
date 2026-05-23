@@ -1,0 +1,31 @@
+"""
+Java Spring Boot Microservice
+Clean Maven project layout with structured Spring packages, properties, and unit tests.
+"""
+pom.xml
+mvnw
+mvnw.cmd
+src:
+    main:
+        java:
+            com:
+                antigravity:
+                    tree:
+                        TreeApplication.java
+                        controller:
+                            ParserController.java
+                        service:
+                            ParserService.java
+                        model:
+                            'TreeNode.java'
+        resources:
+            application.yml
+            static:
+                css:
+                    styles.css
+    test:
+        java:
+            com:
+                antigravity:
+                    tree:
+                        ParserServiceTests.java

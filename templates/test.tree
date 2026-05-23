@@ -1,0 +1,6 @@
+"""
+Test Workspace
+Simple structure to verify raw tree parsing.
+"""
+test_dir:
+    test_file.txt

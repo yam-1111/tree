@@ -1,0 +1,27 @@
+"""
+Standard Go Project Layout
+Idiomatic structure separating command entry points, internal logic, and public packages.
+"""
+go.mod
+go.sum
+Makefile
+cmd:
+    tree-api:
+        main.go
+pkg:
+    parser:
+        parser.go
+        parser_test.go
+    visualizer:
+        render.go
+internal:
+    auth:
+        auth.go
+    database:
+        db.go
+api:
+    swagger:
+        swagger.yaml
+web:
+    templates:
+        index.html

@@ -1,0 +1,24 @@
+"""
+Next.js 15 Brutalist Workspace
+Custom template highlighting Next.js App Router directories, public assets, and components.
+"""
+package.json
+next.config.ts
+tsconfig.json
+'next-env.d.ts'
+public:
+    favicon.ico
+    'next.svg'
+    vercel.svg
+app:
+    layout.tsx
+    page.tsx
+    globals.css
+    api:
+        hello:
+            route.ts
+    components:
+        ui:
+            button.tsx
+            card.tsx
+            dialog.tsx
