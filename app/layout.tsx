@@ -15,15 +15,15 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://tree.pages.dev";
+const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://tree.achinay.dev";
 
 export const metadata: Metadata = {
   metadataBase: new URL(appUrl),
-  title: "Tree/ // Indentation-Based Custom Syntax Visualizer",
-  description: "An interactive visualizer for custom Pythonic indentation-based file tree definitions, built with a heavy redwood brutalist design system.",
+  title: "Tree/ — File Tree Builder",
+  description: "An interactive visualizer for custom Pythonic indentation-based file tree definitions",
   openGraph: {
-    title: "Tree/ // Indentation-Based Custom Syntax Visualizer",
-    description: "An interactive visualizer for custom Pythonic indentation-based file tree definitions, built with a heavy redwood brutalist design system.",
+    title: "Tree/ — File Tree Builder",
+    description: "An interactive visualizer for custom Pythonic indentation-based file tree definitions",
     url: appUrl,
     siteName: "Tree/",
     images: [
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Tree/ // Indentation-Based Custom Syntax Visualizer",
+        alt: "Tree/ — File Tree Builder",
       },
     ],
     locale: "en_US",
@@ -39,8 +39,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Tree/ // Indentation-Based Custom Syntax Visualizer",
-    description: "An interactive visualizer for custom Pythonic indentation-based file tree definitions, built with a heavy redwood brutalist design system.",
+    title: "Tree/ — File Tree Builder",
+    description: "An interactive visualizer for custom Pythonic indentation-based file tree definitions",
     images: ["/og-image.png"],
   },
   icons: {
