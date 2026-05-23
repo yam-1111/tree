@@ -19,11 +19,11 @@ const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://tree.achinay.dev";
 
 export const metadata: Metadata = {
   metadataBase: new URL(appUrl),
-  title: "Tree/ — File Tree Builder",
-  description: "An interactive visualizer for custom Pythonic indentation-based file tree definitions",
+  title: "Tree/ — Generate File Trees from Text",
+  description: "An interactive parser for mapping folder architectures. Build, edit, and visualize directory structures using Pythonic indentation",
   openGraph: {
-    title: "Tree/ — File Tree Builder",
-    description: "An interactive visualizer for custom Pythonic indentation-based file tree definitions",
+    title: "Tree/ — Generate File Trees from Text",
+    description: "An interactive parser for mapping folder architectures. Build, edit, and visualize directory structures using Pythonic indentation",
     url: appUrl,
     siteName: "Tree/",
     images: [
@@ -39,8 +39,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Tree/ — File Tree Builder",
-    description: "An interactive visualizer for custom Pythonic indentation-based file tree definitions",
+    title: "Tree/ — Generate File Trees from Text",
+    description: "An interactive parser for mapping folder architectures. Build, edit, and visualize directory structures using Pythonic indentation",
     images: ["/og-image.png"],
   },
   icons: {
