@@ -8,6 +8,7 @@ import { parseTree, TreeNode } from '@/lib/parser';
 import { cn } from '@/lib/utils';
 import { Sun, Moon, Tree, Gear, GithubLogo, TreeViewIcon } from '@phosphor-icons/react';
 import { TEMPLATES } from '@/lib/templates';
+import { FetchPane } from '@/components/ui/FetchPane';
 
 const DEFAULT_CODE = TEMPLATES.default.value;
 
@@ -198,6 +199,12 @@ export default function Home() {
           </div>
         </div>
       </header>
+
+      {/* Brutalist Redwood Tree Fetcher */}
+      <FetchPane onFetchComplete={(newCode) => {
+        setCode(newCode);
+        setSelectedNode(null);
+      }} />
 
       {/* Flat Desktop Resizable Editor/Visualizer Pane Wrapper */}
       <section className="flex-1 w-full overflow-hidden min-h-0 relative z-10">
