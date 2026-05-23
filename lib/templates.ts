@@ -5,6 +5,11 @@ export interface Template {
 }
 
 export const TEMPLATES: Record<string, Template> = {
+  default: {
+    name: "Default Guide Workspace",
+    description: "Interactive tutorial guide and default syntax overview.",
+    value: `"""\nWelcome to Tree/ // An interactive folder visualizer\n\nThis application processes a custom Pythonic indentation-based syntax \nand renders an elegant visual tree structure.\n\nInstructions:\n1. Nesting: Indent with exactly 4 spaces or 1 tab to assign child levels.\n2. Node Typing: Suffix directories with a colon (:).\n3. Literal Escaping: Wrap names in single quotes, double quotes, or backticks\n   to preserve colons inside filenames.\n4. Directives: Enclose prompt blocks in triple quotes '"""' to discard them.\n"""\n\ntree-visualizer:\n    public:\n        favicon.ico\n        logo.png\n    src:\n        'index:app.tsx'\n        'globals;v3.css'\n        lib:\n            parser.ts\n            templates.ts\n        components:\n            ui:\n                SplitPane.tsx\n                EditorPane.tsx\n                VisualizerPane.tsx\n    package.json\n    tsconfig.json\n    README.md\n`
+  },
   nextjs: {
     name: "Next.js 15 (App Router)",
     description: "A modern Next.js project with an App router and brutalist shadcn UI.",
@@ -39,6 +44,11 @@ export const TEMPLATES: Record<string, Template> = {
 
 // Central Registry: Maps template keys to name, description, and raw .tree file
 export const TEMPLATES_REGISTRY: Record<string, { name: string; description: string; file: string }> = {
+  default: {
+    name: "Default Guide Workspace",
+    description: "Interactive tutorial guide and default syntax overview.",
+    file: "default.tree"
+  },
   nextjs: {
     name: "Next.js 15 (App Router)",
     description: "A modern Next.js project with an App router and brutalist shadcn UI.",

@@ -4,14 +4,14 @@ import React, { useState, useEffect, useRef } from 'react';
 import Editor, { Monaco } from '@monaco-editor/react';
 import { cn } from '@/lib/utils';
 import {
-  Code,
-  FolderOpen,
-  Trash,
-  Copy,
-  Check,
-  Question,
-  CaretDown,
-  ArrowCounterClockwise,
+  CodeIcon,
+  FolderOpenIcon,
+  TrashIcon,
+  CopyIcon,
+  CheckIcon,
+  QuestionIcon,
+  CaretDownIcon,
+  ArrowCounterClockwiseIcon,
 } from '@phosphor-icons/react';
 
 interface EditorPaneProps {
@@ -35,7 +35,7 @@ export function EditorPane({
 }: EditorPaneProps) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [showCheatsheet, setShowCheatsheet] = useState(false);
-  const [copiedCode, setCopiedCode] = useState(false);
+  const [copiedCodeIcon, setCopiedCodeIcon] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Close dropdown on click outside
@@ -54,13 +54,13 @@ export function EditorPane({
   const characterCount = value.length;
   const lineCount = value.split('\n').length;
 
-  const handleCopyCode = async () => {
+  const handleCopyIconCodeIcon = async () => {
     try {
       await navigator.clipboard.writeText(value);
-      setCopiedCode(true);
-      setTimeout(() => setCopiedCode(false), 2000);
+      setCopiedCodeIcon(true);
+      setTimeout(() => setCopiedCodeIcon(false), 2000);
     } catch (err) {
-      console.error('Failed to copy source:', err);
+      console.error('Failed to CopyIcon source:', err);
     }
   };
 
@@ -74,10 +74,10 @@ export function EditorPane({
         root: [
           // Match triple-quote directive comments block
           [/"""[\s\S]*?"""/, 'comment'],
-          
+
           // Match escaped strings
           [/'[^']*'|"[^"]*"|`[^`]*`/, 'string'],
-          
+
           // Match directories (words ending with colons)
           [/[a-zA-Z0-9_\-\.\/]+:/, 'keyword'],
         ],
@@ -132,8 +132,8 @@ export function EditorPane({
       {/* Editor Header Banner */}
       <div className="h-12 border-b border-border flex flex-row items-center justify-between px-4 bg-muted/40 select-none shrink-0">
         <h2 className="font-mono font-medium text-xs tracking-tight text-foreground flex items-center gap-2">
-          <Code size={14} className="text-foreground/80 shrink-0" />
-          PANE 1 // EDITOR
+          <CodeIcon size={14} className="text-foreground/80 shrink-0" />
+          EDITOR
         </h2>
 
         {/* Stats details */}
@@ -154,10 +154,10 @@ export function EditorPane({
             )}
           >
             <span className="truncate flex items-center gap-1.5 font-medium">
-              <FolderOpen size={13} />
+              <FolderOpenIcon size={13} />
               TEMPLATES
             </span>
-            <CaretDown
+            <CaretDownIcon
               size={10}
               className={cn("transition-transform duration-100", dropdownOpen && "rotate-180")}
             />
@@ -206,30 +206,30 @@ export function EditorPane({
           <button
             onClick={onResetToDefault}
             className="p-1.5 font-mono text-xs border border-border bg-background hover:bg-muted text-foreground transition-colors rounded cursor-pointer"
-            title="Reset to default code"
+            title="Reset to default CodeIcon"
           >
-            <ArrowCounterClockwise size={13} />
-          </button>
-          
-          {/* Copy button */}
-          <button
-            onClick={handleCopyCode}
-            className={cn(
-              "p-1.5 font-mono text-xs border border-border bg-background hover:bg-muted text-foreground transition-colors rounded cursor-pointer",
-              copiedCode && "bg-muted font-bold"
-            )}
-            title="Copy editor content"
-          >
-            {copiedCode ? <Check size={13} /> : <Copy size={13} />}
+            <ArrowCounterClockwiseIcon size={13} />
           </button>
 
-          {/* Trash/Clear button */}
+          {/* CopyIcon button */}
+          <button
+            onClick={handleCopyIconCodeIcon}
+            className={cn(
+              "p-1.5 font-mono text-xs border border-border bg-background hover:bg-muted text-foreground transition-colors rounded cursor-pointer",
+              copiedCodeIcon && "bg-muted font-bold"
+            )}
+            title="CopyIcon editor content"
+          >
+            {copiedCodeIcon ? <CheckIcon size={13} /> : <CopyIcon size={13} />}
+          </button>
+
+          {/* TrashIcon/Clear button */}
           <button
             onClick={() => onChange('')}
             className="p-1.5 font-mono text-xs border border-border bg-background hover:bg-muted text-destructive hover:bg-destructive/10 transition-colors rounded cursor-pointer"
             title="Clear editor content"
           >
-            <Trash size={13} />
+            <TrashIcon size={13} />
           </button>
 
           {/* Info Cheatsheet button */}
@@ -238,13 +238,13 @@ export function EditorPane({
             className="flex flex-row items-center gap-1 px-2.5 py-1.5 font-mono text-[11px] font-medium border border-border bg-foreground text-background hover:opacity-90 transition-opacity rounded cursor-pointer"
             title="Show syntax guide"
           >
-            <Question size={13} />
+            <QuestionIcon size={13} />
             <span>GUIDE</span>
           </button>
         </div>
       </div>
 
-      {/* Monaco Code Editor Area */}
+      {/* Monaco CodeIcon Editor Area */}
       <div className="flex-1 overflow-hidden bg-background relative select-text">
         <Editor
           height="100%"
@@ -310,11 +310,11 @@ export function EditorPane({
                   1. DIRECTIVES
                 </h4>
                 <p>
-                  Enclose comments inside triple quotes (<code className="border border-border px-0.5 bg-muted rounded">"""</code>). 
+                  Enclose comments inside triple quotes (<CodeIcon className="border border-border px-0.5 bg-muted rounded">"""</CodeIcon>).
                   These are ignored in tree creation.
                 </p>
                 <pre className="border border-border bg-muted/40 p-1.5 mt-1 select-all overflow-x-auto text-[9px] rounded">
-{`"""
+                  {`"""
 Next.js Workspace
 """`}
                 </pre>
@@ -334,10 +334,10 @@ Next.js Workspace
                   3. DIRECTORIES
                 </h4>
                 <p>
-                  Suffix folders with a colon (<code className="border border-border px-0.5 bg-muted rounded">:</code>).
+                  Suffix folders with a colon (<CodeIcon className="border border-border px-0.5 bg-muted rounded">:</CodeIcon>).
                 </p>
                 <pre className="border border-border bg-muted/40 p-1.5 mt-1 select-all overflow-x-auto text-[9px] rounded">
-{`public:      <-- folder
+                  {`public:      <-- folder
     logo.png <-- file`}
                 </pre>
               </div>
@@ -347,10 +347,10 @@ Next.js Workspace
                   4. LITERAL ESCAPING
                 </h4>
                 <p>
-                  Wrap names in <code className="border border-border px-0.5 bg-muted rounded">'</code> or <code className="border border-border px-0.5 bg-muted rounded">"</code> or <code className="border border-border px-0.5 bg-muted rounded">`</code> to preserve internal colons. Quotes are stripped.
+                  Wrap names in <CodeIcon className="border border-border px-0.5 bg-muted rounded">'</CodeIcon> or <CodeIcon className="border border-border px-0.5 bg-muted rounded">"</CodeIcon> or <CodeIcon className="border border-border px-0.5 bg-muted rounded">`</CodeIcon> to preserve internal colons. Quotes are stripped.
                 </p>
                 <pre className="border border-border bg-muted/40 p-1.5 mt-1 select-all overflow-x-auto text-[9px] rounded">
-{`'auth:api.js' <-- file`}
+                  {`'auth:api.js' <-- file`}
                 </pre>
               </div>
             </div>

@@ -1,0 +1,32 @@
+"""
+Welcome to Tree/ // An interactive folder visualizer
+
+This application processes a custom Pythonic indentation-based syntax 
+and renders an elegant visual tree structure.
+
+Instructions:
+1. Nesting: Indent with exactly 4 spaces or 1 tab to assign child levels.
+2. Node Typing: Suffix directories with a colon (:).
+3. Literal Escaping: Wrap names in single quotes, double quotes, or backticks
+   to preserve colons inside filenames.
+4. Directives: Enclose prompt blocks in triple quotes '"""' to discard them.
+"""
+
+tree-visualizer:
+    public:
+        favicon.ico
+        logo.png
+    src:
+        'index:app.tsx'
+        'globals;v3.css'
+        lib:
+            parser.ts
+            templates.ts
+        components:
+            ui:
+                SplitPane.tsx
+                EditorPane.tsx
+                VisualizerPane.tsx
+    package.json
+    tsconfig.json
+    README.md

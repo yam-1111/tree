@@ -6,42 +6,10 @@ import { EditorPane } from '@/components/ui/EditorPane';
 import { VisualizerPane } from '@/components/ui/VisualizerPane';
 import { parseTree, TreeNode } from '@/lib/parser';
 import { cn } from '@/lib/utils';
-import { Sun, Moon, Tree, Gear, GithubLogo } from '@phosphor-icons/react';
+import { Sun, Moon, Tree, Gear, GithubLogo, TreeViewIcon } from '@phosphor-icons/react';
 import { TEMPLATES } from '@/lib/templates';
 
-const DEFAULT_CODE = `"""
-Welcome to Tree/ // An interactive folder visualizer
-
-This application processes a custom Pythonic indentation-based syntax 
-and renders an elegant visual tree structure.
-
-Instructions:
-1. Nesting: Indent with exactly 4 spaces or 1 tab to assign child levels.
-2. Node Typing: Suffix directories with a colon (:).
-3. Literal Escaping: Wrap names in single quotes, double quotes, or backticks
-   to preserve colons inside filenames.
-4. Directives: Enclose prompt blocks in triple quotes '"""' to discard them.
-"""
-
-tree-visualizer:
-    public:
-        favicon.ico
-        logo.png
-    src:
-        'index:app.tsx'
-        'globals;v3.css'
-        lib:
-            parser.ts
-            templates.ts
-        components:
-            ui:
-                SplitPane.tsx
-                EditorPane.tsx
-                VisualizerPane.tsx
-    package.json
-    tsconfig.json
-    README.md
-`;
+const DEFAULT_CODE = TEMPLATES.default.value;
 
 export default function Home() {
   const [code, setCode] = useState(DEFAULT_CODE);
@@ -143,9 +111,9 @@ export default function Home() {
       <header className="h-14 flex flex-row items-center justify-between px-6 border-b border-border bg-background select-none shrink-0 relative z-30">
         {/* App Title */}
         <div className="flex items-center gap-2">
-          <Tree size={16} className="text-foreground shrink-0" />
-          <h1 className="font-mono font-bold text-sm tracking-wider uppercase select-none">
-            TREE
+          <TreeViewIcon size={16} className="text-foreground shrink-0" />
+          <h1 className="font-mono font-bold text-sm tracking-wider select-none">
+            tree
             <span className="text-muted-foreground">/</span>
           </h1>
         </div>

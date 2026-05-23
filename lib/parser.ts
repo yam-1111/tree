@@ -211,21 +211,65 @@ export function parseTree(input: string): ParseResult {
   };
 }
 
+export interface ExportOptions {
+  fullPath?: boolean;
+  trailingSlash?: boolean;
+  useRoot?: boolean;
+  fancy?: boolean;
+}
+
 /**
  * Helper to render the tree structure into a clean ASCII diagram.
  */
-export function exportToAscii(nodes: TreeNode[], prefix = ''): string {
+export function exportToAscii(
+  nodes: TreeNode[],
+  prefix = '',
+  parentPath = '',
+  options: ExportOptions = {}
+): string {
+  const {
+    fullPath = false,
+    trailingSlash = true,
+    useRoot = true,
+    fancy = true
+  } = options;
+
   let result = '';
+
+  if (useRoot && nodes.length > 0) {
+    // Render the virtual root directory at the top level
+    const rootName = '.';
+    result += `${rootName}${trailingSlash ? '/' : ''}\n`;
+    
+    // Render actual nodes as children of the virtual root
+    const nextParentPath = fullPath ? `${rootName}/` : '';
+    result += exportToAscii(nodes, '', nextParentPath, { ...options, useRoot: false });
+    return result;
+  }
+
   nodes.forEach((node, index) => {
     const isLast = index === nodes.length - 1;
-    const connector = isLast ? '└── ' : '├── ';
     
-    result += `${prefix}${connector}${node.name}${node.type === 'directory' ? '/' : ''}\n`;
-    
+    // Choose connectors and branch characters based on fancy option
+    const connector = fancy
+      ? (isLast ? '└── ' : '├── ')
+      : (isLast ? '--- ' : '|--- ');
+      
+    const nextPrefixChar = fancy
+      ? (isLast ? '    ' : '│   ')
+      : (isLast ? '    ' : '|   ');
+
+    const showTrailing = node.type === 'directory' && trailingSlash;
+    const displayName = `${parentPath}${node.name}${showTrailing ? '/' : ''}`;
+
+    result += `${prefix}${connector}${displayName}\n`;
+
     if (node.type === 'directory' && node.children.length > 0) {
-      const nextPrefix = prefix + (isLast ? '    ' : '│   ');
-      result += exportToAscii(node.children, nextPrefix);
+      const nextPrefix = prefix + nextPrefixChar;
+      const nextParentPath = fullPath ? `${parentPath}${node.name}/` : '';
+      result += exportToAscii(node.children, nextPrefix, nextParentPath, { ...options, useRoot: false });
     }
   });
+
   return result;
 }
