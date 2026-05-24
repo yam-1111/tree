@@ -7,16 +7,48 @@ import { VisualizerPane } from '@/components/ui/VisualizerPane';
 import { parseTree, TreeNode } from '@/lib/parser';
 import { cn } from '@/lib/utils';
 import { Sun, Moon, Tree, Gear, GithubLogo, TreeViewIcon } from '@phosphor-icons/react';
-import { TEMPLATES } from '@/lib/templates';
+import { Template } from '@/lib/templates';
 import { FetchPane } from '@/components/ui/FetchPane';
 
-const DEFAULT_CODE = TEMPLATES.default.value;
+const DEFAULT_CODE = `"""
+Welcome to Tree/ // An interactive folder visualizer
+
+This application processes a custom Pythonic indentation-based syntax 
+and renders an elegant visual tree structure.
+
+Instructions:
+1. Nesting: Indent with exactly 4 spaces or 1 tab to assign child levels.
+2. Node Typing: Suffix directories with a colon (:).
+3. Literal Escaping: Wrap names in single quotes, double quotes, or backticks
+   to preserve colons inside filenames.
+4. Directives: Enclose prompt blocks in triple quotes '"""' to discard them.
+"""
+
+tree-visualizer:
+    public:
+        favicon.ico
+        logo.png
+    src:
+        'index:app.tsx'
+        'globals;v3.css'
+        lib:
+            parser.ts
+            templates.ts
+        components:
+            ui:
+                SplitPane.tsx
+                EditorPane.tsx
+                VisualizerPane.tsx
+    package.json
+    tsconfig.json
+    README.md
+`;
 
 export default function Home() {
   const [code, setCode] = useState(DEFAULT_CODE);
   const [selectedNode, setSelectedNode] = useState<TreeNode | null>(null);
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [templates, setTemplates] = useState(TEMPLATES);
+  const [templates, setTemplates] = useState<Record<string, Template>>({});
   const [fontSize, setFontSize] = useState(12);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const settingsRef = useRef<HTMLDivElement>(null);

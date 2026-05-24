@@ -1,0 +1,20 @@
+"""
+Nuxt Workspace
+Default Nuxt 3 project structure.
+"""
+package.json
+nuxt.config.ts
+app.vue
+pages:
+    index.vue
+components:
+    Navbar.vue
+layouts:
+    default.vue
+public:
+assets:
+server:
+plugins:
+node_modules:
+.nuxt:
+.output:

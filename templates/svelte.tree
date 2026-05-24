@@ -1,0 +1,25 @@
+"""
+Svelte Workspace
+Default Svelte project structure (Vite-based).
+"""
+package.json
+package-lock.json
+svelte.config.js
+vite.config.js
+README.md
+src:
+    main.js
+    App.svelte
+    lib:
+        components:
+            Example.svelte
+        stores:
+            store.js
+    routes:
+        +page.svelte
+public:
+    favicon.png
+    index.html
+node_modules:
+build:
+.svelte-kit:

@@ -1,6 +1,6 @@
 """
-Next.js 15 Brutalist Workspace
-Custom template highlighting Next.js App Router directories, public assets, and components.
+Next.js 16 Workspace
+Next.js App Router directories, public assets, and components.
 """
 package.json
 next.config.ts

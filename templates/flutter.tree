@@ -1,0 +1,34 @@
+"""
+Flutter Workspace
+Default Flutter project structure.
+"""
+pubspec.yaml
+analysis_options.yaml
+README.md
+lib:
+    main.dart
+test:
+    widget_test.dart
+web:
+    index.html
+android:
+    app:
+        src:
+            main:
+                AndroidManifest.xml
+ios:
+    Runner:
+        AppDelegate.swift
+        Info.plist
+linux:
+    main.cc
+macos:
+    Runner:
+        AppDelegate.swift
+windows:
+    runner:
+        main.cpp
+build:
+.dart_tool:
+.idea:
+pubspec.lock

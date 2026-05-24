@@ -1,0 +1,12 @@
+"""
+HolyC Workspace
+Minimal HolyC project structure.
+"""
+main.hc
+lib:
+    utils.hc
+    math.hc
+include:
+    constants.hc
+build:
+README.md

@@ -1,0 +1,19 @@
+"""
+Python Workspace
+Typical Python application structure.
+"""
+requirements.txt
+README.md
+main.py
+app:
+    __init__.py
+    core:
+        config.py
+    models:
+        user.py
+    routes:
+        api.py
+tests:
+    test_main.py
+venv:
+__pycache__:
