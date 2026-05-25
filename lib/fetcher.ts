@@ -41,7 +41,7 @@ export async function fetchRepoTree(repoUrl: string, branch = 'main'): Promise<R
   }
 
   // 2. GITLAB PROVIDER (Matches gitlab.com and other gitlab self-hosted/custom domains like gitlab.gnome.org)
-  if (/gitlab/i.test(cleanUrl)) {
+  if (/gitlab/i.test(cleanUrl) || /kde/i.test(cleanUrl)) {
     try {
       const urlObj = new URL(cleanUrl);
       const host = urlObj.origin;
