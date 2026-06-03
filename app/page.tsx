@@ -155,11 +155,11 @@ export default function Home() {
         <div className="flex flex-row items-center gap-2">
           {/* GitHub Icon */}
           <a
-            href="https://github.com/yam-1111"
+            href="https://github.com/yam-1111/tree"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center p-2 border border-border bg-background hover:bg-muted text-foreground cursor-pointer transition-colors rounded outline-none select-none"
-            title="GitHub Profile"
+            title="GitHub Repository"
           >
             <GithubLogo size={14} />
           </a>
