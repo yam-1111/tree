@@ -14,6 +14,8 @@ export interface ParseResult {
   totalFiles: number;
   maxDepth: number;
   parseTimeMs: number;
+  repoName?: string;
+  repoDescription?: string;
 }
 
 /**
@@ -197,6 +199,48 @@ export function parseTree(input: string): ParseResult {
     }
   }
 
+  // Try to find repository/repo name and description in the docstring
+  let repoName: string | undefined;
+  let repoDescription: string | undefined;
+
+  const repoMatch = docstring.match(/(?:repository|repo):\s*([^\r\n]+)/i);
+  const descMatch = docstring.match(/(?:description|desc):\s*([^\r\n]+)/i);
+
+  if (repoMatch) {
+    const val = repoMatch[1].trim();
+    if (val.includes('/') || val.startsWith('http')) {
+      let cleanVal = val;
+      if (cleanVal.endsWith('.git')) {
+        cleanVal = cleanVal.slice(0, -4);
+      }
+      cleanVal = cleanVal.replace(/\/+$/, '');
+      const parts = cleanVal.split('/');
+      repoName = parts[parts.length - 1] || val;
+    } else {
+      repoName = val;
+    }
+  }
+
+  if (descMatch) {
+    repoDescription = descMatch[1].trim();
+  }
+
+  // Fallback for unlabeled 1-2 line docstrings from repository import
+  if (!repoName && docstring.trim()) {
+    const lines = docstring.split('\n').map(l => l.trim()).filter(Boolean);
+    const isDefaultTemplate = lines.some(l => 
+      l.toLowerCase().includes('welcome') || 
+      l.toLowerCase().includes('instructions') || 
+      l.toLowerCase().includes('nesting')
+    );
+    if (!isDefaultTemplate && lines.length <= 3) {
+      repoName = lines[0];
+      if (lines.length > 1) {
+        repoDescription = lines.slice(1).join('\n');
+      }
+    }
+  }
+
   const endTime = performance.now();
   const parseTimeMs = parseFloat((endTime - startTime).toFixed(2));
 
@@ -207,7 +251,9 @@ export function parseTree(input: string): ParseResult {
     totalDirectories,
     totalFiles,
     maxDepth: roots.length > 0 ? maxDepth + 1 : 0, // 1-indexed max depth
-    parseTimeMs
+    parseTimeMs,
+    repoName,
+    repoDescription
   };
 }
 
@@ -216,6 +262,7 @@ export interface ExportOptions {
   trailingSlash?: boolean;
   useRoot?: boolean;
   fancy?: boolean;
+  rootName?: string;
 }
 
 /**
@@ -238,7 +285,7 @@ export function exportToAscii(
 
   if (useRoot && nodes.length > 0) {
     // Render the virtual root directory at the top level
-    const rootName = '.';
+    const rootName = options.rootName || '.';
     result += `${rootName}${trailingSlash ? '/' : ''}\n`;
     
     // Render actual nodes as children of the virtual root

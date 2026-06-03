@@ -83,8 +83,9 @@ export function VisualizerPane({
       trailingSlash,
       useRoot,
       fancy,
+      rootName: parseResult.repoName,
     });
-  }, [tree, fullPath, trailingSlash, useRoot, fancy]);
+  }, [tree, fullPath, trailingSlash, useRoot, fancy, parseResult.repoName]);
 
   // Combined output for visual display: clean docstring text (without outer quotes) + ASCII tree
   const visualOutput = useMemo(() => {

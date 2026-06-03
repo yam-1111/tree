@@ -25,12 +25,34 @@ export function FetchPane({ onFetchComplete }: FetchPaneProps) {
     setError(null);
 
     try {
-      const entries = await fetchRepoTree(repoUrl, branch);
+      const { entries, description } = await fetchRepoTree(repoUrl, branch);
       if (entries.length === 0) {
         throw new Error('No files or directories found in the specified repository branch.');
       }
 
-      const treeText = transformPathsToTreeText(entries);
+      let cleanUrl = repoUrl.trim();
+      if (cleanUrl.endsWith('.git')) {
+        cleanUrl = cleanUrl.slice(0, -4);
+      }
+      cleanUrl = cleanUrl.replace(/\/+$/, '');
+
+      let repoName = 'repository';
+      try {
+        const urlObj = new URL(cleanUrl);
+        const parts = urlObj.pathname.split('/').filter(Boolean);
+        if (parts.length > 0) {
+          repoName = parts[parts.length - 1];
+        }
+      } catch (e) {
+        const parts = cleanUrl.split('/').filter(Boolean);
+        if (parts.length > 0) {
+          repoName = parts[parts.length - 1];
+        }
+      }
+
+      const descLine = description ? `${description}\n` : '';
+      const docstringHeader = `"""\n${repoName}\n${descLine}"""\n\n`;
+      const treeText = docstringHeader + transformPathsToTreeText(entries);
       onFetchComplete(treeText);
       setIsCollapsed(true); // Automatically collapse on successful fetch
     } catch (err: any) {
